@@ -1154,13 +1154,30 @@
       color: var(--color-text-primary);
     }
     .lede {
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--color-text-muted);
-      margin: 0 0 20px;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--color-text-primary);
+      margin: 0 0 18px;
       font-family: var(--font-sans);
-      font-style: italic;
+      font-style: normal;
       font-weight: 400;
+    }
+    /* Designated subtitle — the ONLY case where .lede is italic + lighter.
+       Applies strictly when the .lede is an immediate sibling of .article-heading. */
+    .article-heading + .lede {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--color-text-muted);
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+    /* Collapse the section gap between a subtitle and the first body paragraph.
+       Applies when the .article-body section contains a subtitle (sibling .lede). */
+    main > section.section-pad.article-body:has(> .container-main > .article-heading + .lede) {
+      padding-bottom: 0;
+    }
+    main > section.section-pad.article-body:has(> .container-main > .article-heading + .lede) + section.section-pad {
+      padding-top: 0;
     }
 
     /* ==== article-template-hero:start ==== */
@@ -1751,5 +1768,6 @@
       });
     })();
   </script>
+  <script defer src="../scripts/header-blur.js"></script>
 </body>
 </html>
