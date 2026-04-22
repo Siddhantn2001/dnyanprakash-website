@@ -1154,13 +1154,30 @@
       color: var(--color-text-primary);
     }
     .lede {
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--color-text-muted);
-      margin: 0 0 20px;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--color-text-primary);
+      margin: 0 0 18px;
       font-family: var(--font-sans);
-      font-style: italic;
+      font-style: normal;
       font-weight: 400;
+    }
+    /* Designated subtitle — the ONLY case where .lede is italic + lighter.
+       Applies strictly when the .lede is an immediate sibling of .article-heading. */
+    .article-heading + .lede {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--color-text-muted);
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+    /* Collapse the section gap between a subtitle and the first body paragraph.
+       Applies when the .article-body section contains a subtitle (sibling .lede). */
+    main > section.section-pad.article-body:has(> .container-main > .article-heading + .lede) {
+      padding-bottom: 0;
+    }
+    main > section.section-pad.article-body:has(> .container-main > .article-heading + .lede) + section.section-pad {
+      padding-top: 0;
     }
 
     /* ==== article-template:start ==== */
@@ -1651,25 +1668,17 @@
       <div class="container-main">
         <header class="article-heading">
           <div class="eyebrow">About</div>
-          <h1>Mission, Vision &amp; Values</h1>
+          <h1>Mission &amp; Vision</h1>
         </header>
         <div class="article-layout">
           <div class="prose">
-            <h2>Our Mission</h2>
-                      <p class="lede">Learning should be joyful. A teacher's true role is not to instruct from a distance, but to create the right environment — one where children feel encouraged, curious, and free to learn on their own terms.</p>
-                      <p>We have always believed that a child who learns in their mother tongue learns more than language. To think independently, to wander freely in the world of ideas, to express what they feel, to solve problems as they arise, to connect with others and with themselves — all of this comes most naturally through the tongue closest to the heart.</p>
-            
-                      <h2>Our Vision</h2>
-                      <p>That every child who leaves Dnyanprakash carries forward a lifelong love of learning, a strong ethical foundation, and the confidence to contribute to their community and country.</p>
-            
-                      <h2>Our Values</h2>
-                      <ul>
-                        <li><strong>Teacher creativity</strong> — an experimental, creative teacher can achieve extraordinary things when given genuine independence.</li>
-                        <li><strong>Parent trust</strong> — institutions and families working in partnership, not opposition.</li>
-                        <li><strong>Mother-tongue learning</strong> — Marathi-medium as the foundation, not a limitation.</li>
-                        <li><strong>Transparency</strong> — especially in admissions, so every family trusts the process even when the outcome is not what they hoped for.</li>
-                        <li><strong>Joy</strong> — non-negotiable, across every classroom and every grade.</li>
-                      </ul>
+            <p>In 1999, Savita and Satish Narhare started Dnyanprakash with 26 children and one deeply held belief: that every child already carries within them everything they need to learn. What they need around them is an environment that knows how to bring it out.</p>
+            <p>That belief has not changed. It is the reason Dnyanprakash exists, and the reason it continues.</p>
+            <p>We believe that learning becomes effortless when it happens in a child's own language, through real experience rather than instruction, in a classroom small enough for every child to be truly known. When those conditions are in place, when a child feels safe, seen, and genuinely engaged, understanding does not need to be forced. It happens naturally. It settles into the personality, not just the notebook.</p>
+            <p>Our vision has always been simple: to raise children who remain curious long after they leave our classrooms. Children who ask questions not because they are required to, but because they genuinely want to know. Children who carry a love for learning into everything they go on to do, into their work, their relationships, and their place in the world.</p>
+            <p>Our mission, guided by Savita and Satish Narhare and shaped by over three decades of experience in teaching, is to make education what it was always meant to be: joyful, meaningful, and deeply human. We strive to cultivate independent thinking, nurture creativity, and give every child the confidence to carve their own path with clarity and courage. Our teachers are guides, not gatekeepers. Our classrooms are places of inquiry, not performance. And every child who walks through our gates is treated not as a student to be managed, but as a person to be known.</p>
+            <p>This is the Dnyanprakash mission. It is not measured in ranks or trophies, though those come too. It is measured in children who grow up knowing their own worth, understanding the dignity of honest work, and carrying a genuine sense of responsibility toward the people and the world around them.</p>
+            <p>Twenty-six years on, that is still what we are building. One child, one year, one quiet act of trust at a time.</p>
           </div>
 
           <aside class="article-aside" aria-label="Related information">
@@ -1906,5 +1915,6 @@
       });
     })();
   </script>
+  <script defer src="../scripts/header-blur.js"></script>
 </body>
 </html>

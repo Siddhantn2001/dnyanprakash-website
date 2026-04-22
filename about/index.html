@@ -1154,13 +1154,30 @@
       color: var(--color-text-primary);
     }
     .lede {
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--color-text-muted);
-      margin: 0 0 20px;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--color-text-primary);
+      margin: 0 0 18px;
       font-family: var(--font-sans);
-      font-style: italic;
+      font-style: normal;
       font-weight: 400;
+    }
+    /* Designated subtitle — the ONLY case where .lede is italic + lighter.
+       Applies strictly when the .lede is an immediate sibling of .article-heading. */
+    .article-heading + .lede {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--color-text-muted);
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+    /* Collapse the section gap between a subtitle and the first body paragraph.
+       Applies when the .article-body section contains a subtitle (sibling .lede). */
+    main > section.section-pad.article-body:has(> .container-main > .article-heading + .lede) {
+      padding-bottom: 0;
+    }
+    main > section.section-pad.article-body:has(> .container-main > .article-heading + .lede) + section.section-pad {
+      padding-top: 0;
     }
 
     /* ==== article-template:start ==== */
@@ -1651,24 +1668,22 @@
       <div class="container-main">
         <header class="article-heading">
           <div class="eyebrow">About Us</div>
-          <h1>About Us</h1>
+          <h1>About Dnyanprakash</h1>
         </header>
         <div class="article-layout">
           <div class="prose">
-            <!-- owner-supplied verbatim About copy — locked 2026-04-21 -->
-                      <p class="lede">Mr Satish Narhare, the founder and head of Dnyanprakash, brings over 27 years of experience in education through Narhare Classes. From the very beginning, his conviction has been simple and unwavering: learning should be joyful. He believed that a teacher's true role is not to instruct from a distance, but to create the right environment, one where children feel encouraged, curious, and free to learn on their own terms.</p>
-            
-                      <p>It was also felt deeply that an experimental, creative teacher can achieve extraordinary things, but only when the institution gives them genuine independence, and parents offer them genuine trust. This combination, rare as it is, was what Dnyanprakash set out to build.</p>
-            
-                      <p>There was another concern that drove this work. In Latur, education had long been dominated by the pressure-driven model of 10th and 12th grade preparation. Primary education was being neglected. A single teacher managing 70 to 80 students could not, in good conscience, be called teaching. Something had to change.</p>
-            
-                      <p>In 1999, Dnyanprakash Foundation took the first step, starting Dnyanprakash Bal-Bhavan for children aged 3 to 6, with a clear intention to experiment thoughtfully in early childhood education. Marathi-medium classes from 1st to 4th followed, with deliberately limited class sizes and without any government subsidy. The parents who found us in those early years placed their faith in something they could feel but not yet fully explain, a school driven by teacher creativity, not convention. That faith has only grown since.</p>
-            
-                      <p>We have always believed that a child who learns in their mother tongue learns more than language. To think independently, to wander freely in the world of ideas, to express what they feel, to solve problems as they arise, to connect with others and with themselves, all of this comes most naturally through the tongue closest to the heart. This belief took us to experimental teachers and schools across the country, and from those visits, an all-inclusive way of working at Dnyanprakash was shaped.</p>
-            
-                      <p>Today, Dnyanprakash holds a distinct and earned place in Latur's educational world. Operating across four divisions — Balbhavan, Balvikas Kendra, Vidyaniketan, and Narhare Learning Home — it has grown into a living community of teachers who are passionate about their work, children who respond to it with energy and joy, and parents and well-wishers who believe deeply in what this school stands for. Every year, over 500 families place their child's name on the waiting list, despite the city's growing pull toward English medium schools. Once admissions are complete, parents accept the outcome with understanding, trusting entirely in the transparency of the process. The 1,400 students of Dnyanprakash, their families, and the dedicated faculty and staff who serve them have become more than participants in a school; they are an inseparable part of the Dnyanprakash story. It is a school known, above all else, for the teachers who dare to experiment.</p>
-            
-                      <p><a href="mission.html" class="news-read">Read our mission <i data-lucide="arrow-right" class="w-4 h-4"></i></a></p>
+            <p>Experiencing the importance of effective learning through the mother tongue, the head of the institution, Mr. Satish Narhare, began teaching mathematics in 1989 through Narhare Classes. During this time, he realized the significance of making learning enjoyable and stress-free for children. With a vision to make education engaging, meaningful, and self-motivated — where children naturally want to learn, ask questions, seek answers, and express their thoughts freely — Savita and Satish Narhare founded Dnyanprakash in 1999, starting with their own child.</p>
+            <p>This initiative, which began with a group of 26 children, now serves nearly 1000 students from kindergarten to 10th grade. For the past 25 years, Dnyanprakash has become a unique center for child education, with its innovative curriculum, consistent assessment methods, and limited class sizes. It now operates in four divisions: Balbhavan, Balvikas Kendra, Vidyaniketan, and Narhare Learning Home. From its humble beginnings with two teachers, Dnyanprakash has grown to include 65 dedicated educators today. There is always a waiting list for admission to Dnyanprakash's Marathi-medium school, a testament to the trust parents have placed in the school's approach despite the limited physical facilities. Today, Dnyanprakash holds a distinct place in Latur's educational landscape due to its caring, committed teachers, enthusiastic students, and the countless parents and well-wishers who love the institution's mission.</p>
+            <p>Music is the soul of Dnyanprakash. From Balbhavan to Narhare Learning Home, the prayer assemblies in all four divisions are entirely music-based. Preparation for two music exams of the All India Gandharva Mandal takes place within these assemblies, and these exams are conducted at the Dnyanprakash Music School. Students sing a variety of songs — prayers, festival songs, folk songs, hymns, patriotic songs — totaling nearly 100 to 150 songs with rhythm and melody. Various dignitaries from different fields visit the prayer assemblies to interact with the students, engaging in conversations with younger children and question-and-answer sessions with older ones. Students in 8th, 9th, and 10th grades also conduct interviews with guests at the Learning Home to learn about their fields. Through these interactions, children gain valuable experiences.</p>
+            <p>To increase awareness of science and the environment, various activities are conducted at Dnyanprakash. For instance, during the severe water scarcity in Latur in 2016, students created water budgets for their families and pledged to bathe with just five liters of water, saving nearly a million liters. Before the summer vacation, they set up bird feeders and water stations, and before the Diwali vacation, they celebrated a firecracker-free Diwali by flying kites. Special activities are planned to connect students with their surroundings and the broader community. These include engaging with elders about their childhood, inviting them to school events, spreading messages on waste and water management, encouraging voting, and promoting cleanliness. These initiatives help children feel a strong connection to their projects.</p>
+            <p>To foster social awareness and sensitive minds, students have raised funds for flood and earthquake victims, the Jal Yukt Latur project, and charitable organizations like Manobal that support differently-abled individuals. Through these activities, children become familiar with the work of various service-oriented organizations. Learning is an ongoing process, and teachers and parents are there to simply guide the way.</p>
+            <p>Even within the confines of the curriculum, teachers at Dnyanprakash have the freedom to enrich the students' experiences. A key part of this is the projects given to students. Over the past 25 years, students from kindergarten to 10th grade have presented various topics through project exhibitions. Younger children work with their parents, while older students work independently. They have explored diverse topics such as organic farming and pesticides, plastic recycling, medicinal plants, linguistic and mathematical games, interviews, science experiments, GST, stock markets, budgets, money markets, digital currency, RBI, and income tax. They have also displayed traditional items from their grandparents' era and learned about traditional occupations through these exhibitions. Education enthusiasts, students, teachers, and parents visit these exhibitions in large numbers and appreciate the efforts. The students are involved in every aspect, from planning and presenting topics to managing visitors and maintaining cleanliness.</p>
+            <p>To develop business skills, Dnyanprakash has carefully planned certain activities. These include making and selling snacks at Anandnagari, selling vegetables from the vegetable project, producing and selling vermicompost, and selling books at the book fair. These hands-on experiences leave lasting memories for the students. In the vegetable project, younger children learn about different crops, while older students prepare seedlings and sell them at exhibitions. With the profits, they have gifted many items to the school.</p>
+            <p>For the past twenty years, Dnyanprakash has presented various topics through its annual gathering. A unique feature of these gatherings is the participation of every student, teacher, and even the bus drivers. The gatherings, with themes like Anandacha Gaav (Village of Joy), Shivotsav, Rangotsav (Festival of Colors), Bahurangi Bahar (Colorful Blossom), Pahusgani (Rain Songs), Sundaracha Vedh Lago, Anand Tarang (Wave of Joy), Bharat Ki Santan (Children of India), and Avgha Rang Ek Jhala (The Whole World Became One), have been of high quality. Students are involved in every aspect, from writing scripts and choosing songs to anchoring and organizing the event. Their opinions are often sought, respected, and decisions are made collectively.</p>
+            <p>From kindergarten to 10th grade, the format of excursions at Dnyanprakash varies by age group. Excursions for younger children sometimes involve tractor or bullock cart rides, or camel rides, and sometimes they experience river visits or hill climbs. Older students visit parents' farms, Hemadpanti temples, museums, rivers, and dams. During three to four-day excursions, they visit various historical and social projects. Older students also participate in jungle safaris and trekking, and many have scaled Maharashtra's highest peak, Kalsubai, multiple times. Some excursions are planned for both students and parents together.</p>
+            <p>Students participating in these diverse activities have won awards at district and state-level sports competitions. Dnyanprakash students now compete at the state level in traditional Indian sports like Mallakhamb, yoga, kabaddi, and kho-kho. They have also won awards in elocution, children's drama, district-level science exhibitions, and group song competitions. Many students are selected annually in scholarship exams, Navodaya Vidyalaya exams, Homi Bhabha, Satara Sainik School exams, and various competitive exams. The 10th-grade board results have consistently been 100% every year. During the COVID-19 pandemic, along with study sessions for students, online workshops were organized for parents. These included a dialogue on building bridges with Dr. Anand Nadkarni, a senior psycho-development expert; a workshop by senior writer and painter Madhuri Purandare based on her book 'Lihave Netake' (Write Neatly); a future-oriented education workshop by Mr. Nilesh Ghughe; and story workshops, where students listened to audioclips of stories narrated by teachers with their families.</p>
+            <p>At Dnyanprakash, teachers pay special attention to the reading and writing development of students. Open reading sessions by teachers in prayer assemblies and classrooms have significantly increased children's interest in reading. Students from grades 1 to 5 are given the magazine Kishor to read. Reading students have become writing students, with their stories and poems appearing in various magazines. To ensure the holistic development of both students and teachers, the institution organizes various workshops, training sessions, seminars, and camps. Every day at Dnyanprakash is filled with energy for both students and teachers. While undertaking numerous activities, special care is taken to ensure they are not just a series of events but that each activity contributes meaningfully to the children's growth.</p>
+            <p>Learning to think independently, exploring the world of ideas, expressing emotions, solving problems as they arise, communicating with others and oneself, and building confidence — all of this becomes possible when learning occurs in one's mother tongue. The journey from Balbhavan to the well-equipped Learning Home at Dnyanprakash has been made easier by the financial support from Narhare Classes, which has maintained its distinctiveness and proven its quality over the past 34 years. The educational drive of Narhare Classes, led by Mr. Narhare, and the commitment to quality have made this 25-year journey of Dnyanprakash, dedicated to joyous and meaningful early childhood education, a success.</p>
           </div>
 
           <aside class="article-aside" aria-label="Related information">
@@ -1905,5 +1920,6 @@
       });
     })();
   </script>
+  <script defer src="../scripts/header-blur.js"></script>
 </body>
 </html>
