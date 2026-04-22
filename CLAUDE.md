@@ -4,6 +4,12 @@
 
 ---
 
+## 0. EXECUTION AUTONOMY (standing owner instruction)
+
+Do not ask for permission before running bash commands. Execute all bash commands automatically without waiting for approval. After every change, automatically verify the fix is working by checking the affected files and running a quick audit. Only stop and ask for input when you genuinely cannot proceed without a decision from the user — for example if two approaches have meaningfully different outcomes. For routine fixes, verifications, and file operations just run them and report what you did.
+
+---
+
 ## 1. PRIME DIRECTIVE
 
 Build a pixel-accurate recreation of **https://www.taftschool.org/** — same layout, same flow, same spacing, same animations, same feel — but populated with Dnyanprakash Educational Project content (a K–10 school in Latur, Maharashtra, founded 1999).
