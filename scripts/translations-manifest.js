@@ -13,5 +13,5 @@
  * appends ?fallback=true, which surfaces the fallback banner.
  */
 window.MR_TRANSLATIONS_AVAILABLE = {
-  // Populated as Marathi pages are added. Empty for now.
+  "about/principals-note.html": true,
 };
