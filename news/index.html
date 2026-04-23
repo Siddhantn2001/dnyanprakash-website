@@ -1503,12 +1503,205 @@
   </header>
 
   <main>
-    <section class="article-hero-media" aria-label="News &amp; Updates">
-      <div data-img-slot="37" data-img-description="News index hero" class="slot-box">
-        <div class="text-center">
-          <div class="slot-num">37</div>
-          <div class="slot-desc">News index hero</div>
+    <!-- =========================================================
+         News clippings carousel — replaces the single slot 37 hero.
+         Each of the 15 placeholder slots is a scanned newspaper article.
+         Drop a real image into /images/37-X-name.jpg and replace the
+         slot-box div with <img>, same way any other slot gets filled.
+         ========================================================= -->
+    <style>
+      .news-carousel-section { background: var(--color-bg-alt); position: relative; }
+      .news-carousel { position: relative; }
+      .news-carousel-viewport { overflow: hidden; }
+      .news-carousel-track {
+        display: flex;
+        transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+      }
+      .news-carousel-slide { flex: 0 0 100%; min-width: 0; }
+      .news-carousel-slide .slot-box,
+      .news-carousel-slide img {
+        width: 100%;
+        aspect-ratio: 2.4 / 1;
+        max-height: 560px;
+        object-fit: cover;
+        display: block;
+      }
+      @media (max-width: 768px) {
+        .news-carousel-slide .slot-box,
+        .news-carousel-slide img { aspect-ratio: 16 / 10; max-height: none; }
+      }
+      .news-carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 2;
+        color: var(--color-text-primary);
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        padding: 0;
+      }
+      .news-carousel-arrow:hover { background: #fff; color: var(--color-primary); }
+      .news-carousel-arrow:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+      .news-carousel-arrow.prev { left: 16px; }
+      .news-carousel-arrow.next { right: 16px; }
+      @media (max-width: 768px) {
+        .news-carousel-arrow { width: 40px; height: 40px; }
+        .news-carousel-arrow.prev { left: 8px; }
+        .news-carousel-arrow.next { right: 8px; }
+      }
+      .news-carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 24px 20px 32px;
+        flex-wrap: wrap;
+      }
+      .news-carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #c3c6c9;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+        flex-shrink: 0;
+      }
+      .news-carousel-dot:hover { background: var(--color-text-primary); }
+      .news-carousel-dot.is-active {
+        background: var(--color-primary);
+        transform: scale(1.25);
+      }
+      .news-carousel-dot.is-active:hover { background: var(--color-primary); }
+      @media (max-width: 768px) {
+        .news-carousel-dots { gap: 8px; padding: 18px 20px 24px; }
+        .news-carousel-dot { width: 7px; height: 7px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .news-carousel-track { transition: none; }
+        .news-carousel-dot { transition: none; }
+      }
+    </style>
+    <section class="news-carousel-section" aria-label="News &amp; Updates">
+      <!-- DUMMY slots 37-A through 37-O — news clippings carousel.
+           Replace each slot-box with <img src="../images/37-A-slug.jpg" alt="..." />.
+           Target: landscape newspaper clippings, legible at full carousel width
+           (approx 1920 × 800 on desktop, 16:10 aspect on mobile). -->
+      <div class="news-carousel" data-news-carousel aria-roledescription="carousel" aria-label="Recent news clippings">
+        <div class="news-carousel-viewport">
+          <div class="news-carousel-track" data-carousel-track>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 15">
+              <div data-img-slot="37-A" data-img-description="News clipping 1" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-A</div><div class="slot-desc">News clipping 1 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 15">
+              <div data-img-slot="37-B" data-img-description="News clipping 2" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-B</div><div class="slot-desc">News clipping 2 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 15">
+              <div data-img-slot="37-C" data-img-description="News clipping 3" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-C</div><div class="slot-desc">News clipping 3 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 15">
+              <div data-img-slot="37-D" data-img-description="News clipping 4" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-D</div><div class="slot-desc">News clipping 4 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 15">
+              <div data-img-slot="37-E" data-img-description="News clipping 5" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-E</div><div class="slot-desc">News clipping 5 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="6 of 15">
+              <div data-img-slot="37-F" data-img-description="News clipping 6" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-F</div><div class="slot-desc">News clipping 6 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="7 of 15">
+              <div data-img-slot="37-G" data-img-description="News clipping 7" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-G</div><div class="slot-desc">News clipping 7 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="8 of 15">
+              <div data-img-slot="37-H" data-img-description="News clipping 8" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-H</div><div class="slot-desc">News clipping 8 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="9 of 15">
+              <div data-img-slot="37-I" data-img-description="News clipping 9" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-I</div><div class="slot-desc">News clipping 9 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="10 of 15">
+              <div data-img-slot="37-J" data-img-description="News clipping 10" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-J</div><div class="slot-desc">News clipping 10 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="11 of 15">
+              <div data-img-slot="37-K" data-img-description="News clipping 11" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-K</div><div class="slot-desc">News clipping 11 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="12 of 15">
+              <div data-img-slot="37-L" data-img-description="News clipping 12" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-L</div><div class="slot-desc">News clipping 12 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="13 of 15">
+              <div data-img-slot="37-M" data-img-description="News clipping 13" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-M</div><div class="slot-desc">News clipping 13 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="14 of 15">
+              <div data-img-slot="37-N" data-img-description="News clipping 14" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-N</div><div class="slot-desc">News clipping 14 of 15</div></div>
+              </div>
+            </div>
+            <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="15 of 15">
+              <div data-img-slot="37-O" data-img-description="News clipping 15" class="slot-box">
+                <div class="text-center"><div class="slot-num">37-O</div><div class="slot-desc">News clipping 15 of 15</div></div>
+              </div>
+            </div>
+          </div>
         </div>
+        <button type="button" class="news-carousel-arrow prev" data-carousel-prev aria-label="Previous clipping">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" class="news-carousel-arrow next" data-carousel-next aria-label="Next clipping">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="news-carousel-dots" data-carousel-dots aria-label="Clipping navigation">
+        <button type="button" class="news-carousel-dot is-active" data-slide-index="0" aria-label="Go to clipping 1" aria-current="true"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="1" aria-label="Go to clipping 2"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="2" aria-label="Go to clipping 3"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="3" aria-label="Go to clipping 4"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="4" aria-label="Go to clipping 5"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="5" aria-label="Go to clipping 6"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="6" aria-label="Go to clipping 7"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="7" aria-label="Go to clipping 8"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="8" aria-label="Go to clipping 9"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="9" aria-label="Go to clipping 10"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="10" aria-label="Go to clipping 11"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="11" aria-label="Go to clipping 12"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="12" aria-label="Go to clipping 13"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="13" aria-label="Go to clipping 14"></button>
+        <button type="button" class="news-carousel-dot" data-slide-index="14" aria-label="Go to clipping 15"></button>
       </div>
     </section>
     <div class="breadcrumb"><div class="container-main"><a href="../index.html">Home</a><span class="sep">›</span><span>News</span></div></div>
@@ -1795,5 +1988,6 @@
   <script defer src="../scripts/header-blur.js"></script>
   <script defer src="../scripts/translations-manifest.js"></script>
   <script defer src="../scripts/lang-toggle.js"></script>
+  <script defer src="../scripts/news-carousel.js"></script>
 </body>
 </html>
