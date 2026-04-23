@@ -1518,18 +1518,47 @@
         transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
         will-change: transform;
       }
-      .news-carousel-slide { flex: 0 0 100%; min-width: 0; }
-      .news-carousel-slide .slot-box,
-      .news-carousel-slide img {
-        width: 100%;
+      /* Carousel slide: letterbox background so portrait newspaper clippings
+         fit without cropping. Slot-box (dashed placeholders, if any slide
+         still has one) keeps its original fill behavior. Real <img> children
+         render at natural aspect ratio, centered, with dark bars on either
+         side for portrait scans. */
+      .news-carousel-slide {
+        flex: 0 0 100%;
+        min-width: 0;
+        background-color: #1a1612;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        box-sizing: border-box;
         aspect-ratio: 2.4 / 1;
         max-height: 560px;
-        object-fit: cover;
+        overflow: hidden;
+      }
+      .news-carousel-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
         display: block;
       }
+      /* Slot-box placeholders (used only for unfilled slots): inherit their
+         dashed-border treatment from the global .slot-box rules but fill the
+         letterbox area. */
+      .news-carousel-slide .slot-box {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+        max-height: none;
+      }
       @media (max-width: 768px) {
-        .news-carousel-slide .slot-box,
-        .news-carousel-slide img { aspect-ratio: 16 / 10; max-height: none; }
+        .news-carousel-slide {
+          aspect-ratio: 16 / 10;
+          max-height: none;
+          padding: 16px;
+        }
       }
       .news-carousel-arrow {
         position: absolute;
@@ -1538,8 +1567,9 @@
         width: 44px;
         height: 44px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.92);
-        border: 1px solid var(--color-border);
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1603,79 +1633,49 @@
         <div class="news-carousel-viewport">
           <div class="news-carousel-track" data-carousel-track>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 15">
-              <div data-img-slot="37-A" data-img-description="News clipping 1" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-A</div><div class="slot-desc">News clipping 1 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-01.jpg" alt="News coverage of Dnyanprakash — clipping 1 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 15">
-              <div data-img-slot="37-B" data-img-description="News clipping 2" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-B</div><div class="slot-desc">News clipping 2 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-02.jpg" alt="News coverage of Dnyanprakash — clipping 2 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 15">
-              <div data-img-slot="37-C" data-img-description="News clipping 3" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-C</div><div class="slot-desc">News clipping 3 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-03.jpg" alt="News coverage of Dnyanprakash — clipping 3 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 15">
-              <div data-img-slot="37-D" data-img-description="News clipping 4" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-D</div><div class="slot-desc">News clipping 4 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-04.jpg" alt="News coverage of Dnyanprakash — clipping 4 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 15">
-              <div data-img-slot="37-E" data-img-description="News clipping 5" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-E</div><div class="slot-desc">News clipping 5 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-05.jpg" alt="News coverage of Dnyanprakash — clipping 5 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="6 of 15">
-              <div data-img-slot="37-F" data-img-description="News clipping 6" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-F</div><div class="slot-desc">News clipping 6 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-06.jpg" alt="News coverage of Dnyanprakash — clipping 6 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="7 of 15">
-              <div data-img-slot="37-G" data-img-description="News clipping 7" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-G</div><div class="slot-desc">News clipping 7 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-07.jpg" alt="News coverage of Dnyanprakash — clipping 7 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="8 of 15">
-              <div data-img-slot="37-H" data-img-description="News clipping 8" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-H</div><div class="slot-desc">News clipping 8 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-08.jpg" alt="News coverage of Dnyanprakash — clipping 8 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="9 of 15">
-              <div data-img-slot="37-I" data-img-description="News clipping 9" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-I</div><div class="slot-desc">News clipping 9 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-09.jpg" alt="News coverage of Dnyanprakash — clipping 9 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="10 of 15">
-              <div data-img-slot="37-J" data-img-description="News clipping 10" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-J</div><div class="slot-desc">News clipping 10 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-10.jpg" alt="News coverage of Dnyanprakash — clipping 10 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="11 of 15">
-              <div data-img-slot="37-K" data-img-description="News clipping 11" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-K</div><div class="slot-desc">News clipping 11 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-11.jpg" alt="News coverage of Dnyanprakash — clipping 11 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="12 of 15">
-              <div data-img-slot="37-L" data-img-description="News clipping 12" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-L</div><div class="slot-desc">News clipping 12 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-12.jpg" alt="News coverage of Dnyanprakash — clipping 12 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="13 of 15">
-              <div data-img-slot="37-M" data-img-description="News clipping 13" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-M</div><div class="slot-desc">News clipping 13 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-13.jpg" alt="News coverage of Dnyanprakash — clipping 13 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="14 of 15">
-              <div data-img-slot="37-N" data-img-description="News clipping 14" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-N</div><div class="slot-desc">News clipping 14 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-14.jpg" alt="News coverage of Dnyanprakash — clipping 14 of 15" />
             </div>
             <div class="news-carousel-slide" role="group" aria-roledescription="slide" aria-label="15 of 15">
-              <div data-img-slot="37-O" data-img-description="News clipping 15" class="slot-box">
-                <div class="text-center"><div class="slot-num">37-O</div><div class="slot-desc">News clipping 15 of 15</div></div>
-              </div>
+              <img src="../images/news-clippings/clipping-15.jpg" alt="News coverage of Dnyanprakash — clipping 15 of 15" />
             </div>
           </div>
         </div>
