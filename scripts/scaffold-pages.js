@@ -1104,7 +1104,7 @@ PAGES.push({
   file: 'contact.html',
   prefix: '',
   title: 'Contact — Dnyanprakash',
-  metaDesc: 'Contact Dnyanprakash Educational Project, Latur. Address, phone, WhatsApp, email and map.',
+  metaDesc: 'Contact Dnyanprakash Educational Project, Latur. Address, phone, email and map.',
   hero: {
     eyebrow: 'Contact',
     title: 'Contact Dnyanprakash',
@@ -1127,7 +1127,6 @@ PAGES.push({
               Maharashtra, India
             </address>
             <p><strong>Phone:</strong> <a href="tel:02382220598">02382 220598</a></p>
-            <p><strong>WhatsApp:</strong> <a href="https://wa.me/919422610081" target="_blank" rel="noopener">+91 94226 10081</a></p>
             <p><strong>Email:</strong> <a href="mailto:dnyanprakashltr@gmail.com">dnyanprakashltr@gmail.com</a></p>
             <div style="aspect-ratio:4/3; overflow:hidden; border:1px solid var(--color-border); margin-top:28px;">
               <iframe

@@ -67,7 +67,6 @@ Address:           Dnyanprakash Balvikas Kendra, near Narhare Classes,
                    Behind Dayanand College, Prakash Nagar (East),
                    Dist. Latur - 413512, Maharashtra, India
 Phone:             02382 220598
-WhatsApp:          +91 94226 10081
 Email:             dnyanprakashltr@gmail.com
 
 Social links:
