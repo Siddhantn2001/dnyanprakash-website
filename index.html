@@ -504,33 +504,9 @@
     }
     .hero-media { position: absolute; inset: 0; overflow: hidden; }
     .hero-media > * { width: 100%; height: 100%; }
-    /* Hero image rotation: two stacked images crossfade every 20s.
-       Each <picture class="hero-image"> sits absolute, opacity 0 by default.
-       JS toggles .is-active to fade between them. */
-    .hero-image-stack {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero-image {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 2000ms ease-in-out;
-      will-change: opacity;
-    }
-    .hero-image.is-active { opacity: 1; }
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    /* Ken Burns slow zoom — mobile only, breaks up long vertical scroll on phones.
-       Only the currently-active image animates; the inactive one stays still. */
+    /* Ken Burns slow zoom — mobile only, breaks up long vertical scroll on phones */
     @media (max-width: 768px) {
-      .hero .hero-image.is-active img {
+      .hero .hero-media img {
         animation: ken-burns 18s ease-in-out infinite alternate;
         transform-origin: center center;
         will-change: transform;
@@ -540,12 +516,9 @@
         100% { transform: scale(1.05); }
       }
     }
-    /* Reduced motion: kill rotation crossfade transition + Ken Burns zoom */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-image { transition: none !important; }
-    }
+    /* Reduced motion: kill the Ken Burns zoom */
     @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
-      .hero .hero-image.is-active img { animation: none !important; }
+      .hero .hero-media img { animation: none !important; }
     }
     /* Gradient only bottom 60% — transparent at top so logo stays clean */
     .hero-overlay {
@@ -1600,26 +1573,11 @@
          ========================================================= -->
     <section class="hero" aria-label="Welcome">
       <div class="hero-media">
-        <div class="hero-image-stack">
-          <picture class="hero-image is-active">
-            <source srcset="images/01-hero.webp" type="image/webp">
-            <img
-              src="images/01-hero.jpg"
-              alt="Dnyanprakash school building exterior with landscaped foreground"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </picture>
-          <picture class="hero-image">
-            <source srcset="images/02-hero-award-ceremony.webp" type="image/webp">
-            <img
-              src="images/02-hero-award-ceremony.jpg"
-              alt="Dnyanprakash leadership receiving the Chief Minister's My School, Beautiful School award"
-              fetchpriority="low"
-              decoding="async"
-            />
-          </picture>
-        </div>
+        <img
+          src="images/01-hero.jpg"
+          alt="Dnyanprakash school building exterior with landscaped foreground"
+          class="w-full h-full object-cover"
+        />
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -2225,6 +2183,5 @@
   <script defer src="scripts/translations-manifest.js"></script>
   <script defer src="scripts/lang-toggle.js"></script>
   <script defer src="scripts/scroll-reveals.js"></script>
-  <script defer src="scripts/hero-rotation.js"></script>
 </body>
 </html>
