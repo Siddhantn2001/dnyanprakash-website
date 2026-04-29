@@ -1249,6 +1249,107 @@
       .article-heading h1 { font-size: 36px; }
     }
     /* ==== article-template-hero:end ==== */
+
+    /* ==== article-sidebar:start ==== */
+    .article-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; }
+    @media (min-width: 1024px) {
+      .article-layout { grid-template-columns: minmax(0, 1fr) 320px; gap: 72px; align-items: start; }
+    }
+    .article-layout .prose { max-width: none; }
+    .article-aside { display: flex; flex-direction: column; gap: 28px; }
+    @media (min-width: 1024px) {
+      .article-aside { position: sticky; top: 96px; }
+    }
+    .aside-pullquote {
+      border-left: 3px solid var(--color-primary);
+      padding: 4px 0 4px 20px;
+      margin: 0;
+      font-family: var(--font-display);
+      font-style: normal;
+      font-size: 22px;
+      line-height: 1.35;
+      color: var(--color-text-primary);
+    }
+    .aside-pullquote cite {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--font-sans);
+      font-style: normal;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .aside-card { background: var(--color-bg-alt); padding: 24px; }
+    .aside-card-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin: 0 0 14px;
+    }
+    .aside-links { display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+    .aside-links a {
+      color: var(--color-text-primary);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .aside-links a:hover { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+    .aside-instagram {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      padding: 20px 22px;
+    }
+    .aside-instagram-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .aside-instagram-top svg {
+      width: 22px; height: 22px; color: var(--color-primary);
+    }
+    .aside-instagram-top span {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      font-size: 15px;
+    }
+    .aside-instagram p {
+      font-size: 14px; line-height: 1.5;
+      color: var(--color-text-muted);
+      margin: 0 0 14px;
+    }
+    .aside-instagram-btn {
+      display: inline-block;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 10px 18px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .aside-instagram-btn:hover { background: var(--color-primary-dark); color: #fff; text-decoration: none; }
+    .aside-cta { background: var(--color-primary); color: #fff; padding: 24px; }
+    .aside-cta p {
+      font-family: var(--font-display); font-style: normal; font-weight: 400;
+      font-size: 19px; line-height: 1.3; color: #fff; margin: 0 0 16px;
+    }
+    .aside-cta a.aside-cta-btn {
+      display: inline-block; background: #fff; color: var(--color-primary);
+      padding: 11px 20px; font-family: var(--font-sans); font-size: 12px;
+      font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: background .2s;
+    }
+    .aside-cta a.aside-cta-btn:hover { background: var(--color-bg-alt); }
+    /* ==== article-sidebar:end ==== */
   </style>
 </head>
 <body>
@@ -1551,10 +1652,44 @@
     </section>
     <section class="section-pad reveal">
       <div class="container-main">
-        <div class="prose">
-          <p>अनुशासित, चारित्र्यवान, परिपूर्ण आणि समर्पणशील युवा पिढी घडविण्याच्या उद्देशाने केंद्राच्या माजी विद्यार्थ्यांच्या शैक्षणिक प्रगतीचा (व सामाजिक जाणवेचा) स्वतंत्र अहवाल बालगटांपासून जतन केला जातो. ज्ञानप्रकाश माजी विद्यार्थी संघ प्रकल्पाशी भावनिक नात्याने जोडला गेलेला आहे.</p>
+        <div class="article-layout">
+          <div class="prose">
+            <p>अनुशासित, चारित्र्यवान, परिपूर्ण आणि समर्पणशील युवा पिढी घडविण्याच्या उद्देशाने केंद्राच्या माजी विद्यार्थ्यांच्या शैक्षणिक प्रगतीचा (व सामाजिक जाणवेचा) स्वतंत्र अहवाल बालगटांपासून जतन केला जातो. ज्ञानप्रकाश माजी विद्यार्थी संघ प्रकल्पाशी भावनिक नात्याने जोडला गेलेला आहे.</p>
 
-          <p>बालपणातील आठवणींना उजाळा देण्यासाठी विविध कार्यक्रमाच्या निमित्ताने माजी विद्यार्थी प्रकल्पात येतात आणि प्रकल्पातील विद्यार्थ्यांना करिअर गाईडन्स करतात. यावेळी शिक्षक मुलांना शैक्षणिक वाटचालीसाठी शुभेच्छा व प्रेरणा देतात.</p>
+            <p>बालपणातील आठवणींना उजाळा देण्यासाठी विविध कार्यक्रमाच्या निमित्ताने माजी विद्यार्थी प्रकल्पात येतात आणि प्रकल्पातील विद्यार्थ्यांना करिअर गाईडन्स करतात. यावेळी शिक्षक मुलांना शैक्षणिक वाटचालीसाठी शुभेच्छा व प्रेरणा देतात.</p>
+          </div>
+
+          <aside class="article-aside" aria-label="संबंधित माहिती">
+            <blockquote class="aside-pullquote">
+              &ldquo;ज्ञानप्रकाश माजी विद्यार्थी संघ प्रकल्पाशी भावनिक नात्याने जोडला गेलेला आहे.&rdquo;
+              <cite>लेखातून</cite>
+            </blockquote>
+            <div class="aside-card">
+              <div class="aside-card-eyebrow">संबंधित पाने</div>
+              <div class="aside-links">
+                <a href="../about/mission.html">आमचे ध्येय</a>
+                <a href="../about/history.html">इतिहास</a>
+                <a href="../academics/index.html">शैक्षणिक विभाग</a>
+                <a href="../admission/index.html">प्रवेश</a>
+              </div>
+            </div>
+            <div class="aside-instagram">
+              <div class="aside-instagram-top">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+                <span>@dnyanprakash_latur</span>
+              </div>
+              <p>ज्ञानप्रकाशच्या दैनंदिन क्षणांसाठी इन्स्टाग्रामवर आम्हाला फॉलो करा.</p>
+              <a href="https://www.instagram.com/dnyanprakash_latur" target="_blank" rel="noopener" class="aside-instagram-btn">इन्स्टाग्रामवर फॉलो करा</a>
+            </div>
+            <div class="aside-cta">
+              <p>शैक्षणिक वर्ष २०२६&ndash;२७ साठी प्रवेश सुरू.</p>
+              <a href="https://www.dnyanprakash.techvium.in/online_admission" target="_blank" rel="noopener" class="aside-cta-btn">ऑनलाइन अर्ज करा</a>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
