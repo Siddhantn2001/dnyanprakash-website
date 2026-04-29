@@ -3,16 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dnyanprakash Ranked Best School in the District and Second Best in the Region — Dnyanprakash News</title>
-  <meta name="description" content="Vidyaniketan students secure the runner-up position in a division-wide academic competition." />
+  <title>Student Life | Dnyanprakash Educational Project, Latur</title>
+  <meta name="description" content="Music, sports, social activities, creativity festivals, and annual gatherings at Dnyanprakash — the rhythms that shape student life beyond the classroom." />
 
   <!-- Google Fonts: Playfair Display (display italic substitute for adelle-condensed) + Libre Franklin (body substitute for franklin-gothic-urw) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500&family=Playfair+Display:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Marathi typography for the body of this page (the page chrome stays English).
+       The .prose section that holds the article content is tagged lang="mr"; these
+       rules style only that subtree, matching the established Marathi-page typography. -->
+  <style>
+    [lang="mr"] {
+      font-family: "Noto Sans Devanagari", "Libre Franklin", system-ui, sans-serif;
+    }
+    [lang="mr"] h2 {
+      font-family: "Noto Serif Devanagari", "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.005em;
+      margin-top: 56px;
+      margin-bottom: 16px;
+    }
+    [lang="mr"] h2:first-child { margin-top: 0; }
+    [lang="mr"] p {
+      line-height: 1.85;
+    }
+    /* Article-notice — small italic muted strip above the Marathi body */
+    .article-notice {
+      font-size: 14px;
+      font-style: italic;
+      color: var(--color-text-muted);
+      margin: 0 0 36px;
+      padding: 0 0 20px;
+      border-bottom: 1px solid var(--color-border);
+    }
+  </style>
 
   <!-- Favicon / touch icons (generated from the square brand logo) -->
   <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico?v=3">
@@ -648,9 +678,6 @@
       margin: 0;
     }
     .news-card .news-img-wrap > * { width: 100%; height: 100%; }
-    .news-card .news-img-wrap > img,
-    .news-card .news-img-wrap > picture,
-    .news-card .news-img-wrap > picture > img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
     .news-card::after {
       content: '';
       position: absolute; inset: 0;
@@ -1059,47 +1086,6 @@
       color: var(--color-text-muted);
     }
 
-    /* ---------- Editorial news article: photo banner + headline above prose ---------- */
-    .article-banner {
-      width: 100%;
-      aspect-ratio: 2.4 / 1;
-      overflow: hidden;
-      background: var(--color-bg-alt);
-    }
-    .article-banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    @media (max-width: 768px) {
-      .article-banner { aspect-ratio: 16 / 10; }
-    }
-    .article-header {
-      max-width: 760px;
-      margin: 0 0 48px;
-    }
-    .article-title {
-      font-family: var(--font-display);
-      font-style: normal;
-      font-weight: 400;
-      font-size: 48px;
-      line-height: 1.08;
-      letter-spacing: var(--tracking-display-tight);
-      color: var(--color-text-primary);
-      margin: 8px 0 20px;
-    }
-    @media (max-width: 768px) {
-      .article-title { font-size: 34px; }
-    }
-    .article-deck {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: 20px;
-      line-height: 1.5;
-      color: var(--color-text-muted);
-      margin: 0;
-    }
     /* ---------- Scroll-reveal animation ---------- */
     /* Default: visible (no-JS users, SEO crawlers, and screenshots see content). */
     .reveal { opacity: 1; transform: none; }
@@ -1552,7 +1538,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="../academics/index.html" class="nav-link" aria-haspopup="true">Academics</a>
+          <a href="../index.html" class="nav-link" aria-haspopup="true">Academics</a>
           <div class="mega-panel" role="menu" aria-label="Academics">
             <div class="container-main grid grid-cols-12 gap-10">
               <div class="col-span-5">
@@ -1566,15 +1552,15 @@
               </div>
               <div class="col-span-7 grid grid-cols-2 gap-x-10">
                 <div>
-                  <a class="mega-sublink" style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Balbhavan (Age 3–6)</a>
-                  <a class="mega-sublink" style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Balvikas Kendra (1–4)</a>
-                  <a class="mega-sublink" style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Vidyaniketan (5–10)</a>
-                  <a class="mega-sublink" style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Narhare Learning Home</a>
+                  <a href="balbhavan.html" class="mega-sublink">Balbhavan (Age 3–6)</a>
+                  <a href="balvikas-kendra.html" class="mega-sublink">Balvikas Kendra (1–4)</a>
+                  <a href="vidyaniketan.html" class="mega-sublink">Vidyaniketan (5–10)</a>
+                  <a href="narhare-learning-home.html" class="mega-sublink">Narhare Learning Home</a>
                 </div>
                 <div>
                   <a href="../academics/student-life.html" class="mega-sublink">Student Life</a>
                   <a href="../campus-life/student-life.html" class="mega-sublink">Life Skills &amp; Service</a>
-                  <a href="../academics/index.html" class="mega-sublink">Curriculum Overview</a>
+                  <a href="../index.html" class="mega-sublink">Curriculum Overview</a>
                 </div>
               </div>
             </div>
@@ -1611,7 +1597,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="../index.html" class="nav-link" aria-haspopup="true">News</a>
+          <a href="../news/index.html" class="nav-link" aria-haspopup="true">News</a>
           <div class="mega-panel" role="menu" aria-label="News">
             <div class="container-main grid grid-cols-12 gap-10">
               <div class="col-span-5">
@@ -1619,21 +1605,21 @@
                 <h3 class="mega-title">News &amp; Updates</h3>
                 <p class="mega-desc">Read the latest from Dnyanprakash — competitions, celebrations, curriculum updates, and student achievements from across our three divisions.</p>
                 <div class="flex gap-3">
-                  <a href="../index.html" class="btn btn-primary">All Stories</a>
+                  <a href="../news/index.html" class="btn btn-primary">All Stories</a>
                   <a href="../campus-life/events.html" class="btn btn-secondary">Events</a>
                 </div>
               </div>
               <div class="col-span-7 grid grid-cols-2 gap-x-10">
                 <div>
-                  <a href="../index.html" class="mega-sublink">Latest News</a>
-                  <a href="challenging-times-leaders.html" class="mega-sublink">Challenging Times</a>
-                  <a href="second-place-latur-division.html" class="mega-sublink">Second Place, Latur</a>
-                  <a href="142-meritorious-students.html" class="mega-sublink">142 Meritorious Students</a>
+                  <a href="../news/index.html" class="mega-sublink">Latest News</a>
+                  <a href="../news/challenging-times-leaders.html" class="mega-sublink">Challenging Times</a>
+                  <a href="../news/second-place-latur-division.html" class="mega-sublink">Second Place, Latur</a>
+                  <a href="../news/142-meritorious-students.html" class="mega-sublink">142 Meritorious Students</a>
                 </div>
                 <div>
-                  <a href="parents-grade-one-textbook.html" class="mega-sublink">Grade 1 Textbook</a>
-                  <a href="mrunal-kulkarni-dialogue.html" class="mega-sublink">Mrunal Kulkarni Dialogue</a>
-                  <a href="institute-head-satish-narhare.html" class="mega-sublink">Institute Head, Mr. Narhare</a>
+                  <a href="../news/parents-grade-one-textbook.html" class="mega-sublink">Grade 1 Textbook</a>
+                  <a href="../news/mrunal-kulkarni-dialogue.html" class="mega-sublink">Mrunal Kulkarni Dialogue</a>
+                  <a href="../news/institute-head-satish-narhare.html" class="mega-sublink">Institute Head, Mr. Narhare</a>
                   <a href="../gallery.html" class="mega-sublink">Media Gallery</a>
                 </div>
               </div>
@@ -1683,42 +1669,83 @@
   </header>
 
   <main>
-        <section class="article-hero-media" aria-label="Dnyanprakash Ranked Best School in the District and Second Best in the Region">
-      <picture><source srcset="../images/02-award-ceremony.webp" type="image/webp"><img src="../images/02-award-ceremony.jpg" alt="Dnyanprakash honoured with trophy and 15 lakh cheque at the Chief Minister's My School, Beautiful School ceremony in Mumbai" /></picture>
+        <section class="article-hero-media" aria-label="Student Life">
+      <picture>
+        <source srcset="../images/14-vidyaniketan.webp" type="image/webp">
+        <img src="../images/14-vidyaniketan.jpg" alt="Dnyanprakash students in classroom — student life beyond the curriculum" />
+      </picture>
     </section>
-<div class="breadcrumb"><div class="container-main"><a href="../index.html">Home</a><span class="sep">›</span><a href="index.html">News</a><span class="sep">›</span><span>Best School in the District</span></div></div>
+<div class="breadcrumb"><div class="container-main"><a href="../index.html">Home</a><span class="sep">›</span><a href="index.html">Academics</a><span class="sep">›</span><span>Student Life</span></div></div>
     <section class="section-pad reveal article-body">
       <div class="container-main">
         <header class="article-heading">
-          <div class="eyebrow">News · Chief Minister's My School, Beautiful School</div>
-          <h1>Dnyanprakash Ranked Best School in the District and Second Best in the Region</h1>
+          <div class="eyebrow">Academics</div>
+          <h1>Student Life</h1>
         </header>
         <div class="article-layout">
           <div class="prose">
-            <p class="lede">In the competition held under the initiative <em>Chief Minister's My School, Beautiful School</em>, Dnyanprakash Balvikas Kendra secured first place in Latur district and second place at the divisional level. At a ceremony in Mumbai, the Honourable Chief Minister Eknath Shinde and the Minister of School Education, Deepak Kesarkar, honoured the institution with a trophy and a cash prize of 15 lakh rupees.</p>
-            
-                <p>On this occasion, the project leaders, Satish Narhare and Principal Savita Narhare, expressed their heartfelt gratitude to the dedicated teachers who passionately strive for creative, joyful, and quality education, as well as to the enthusiastic students, supportive parents, and well-wishers.</p>
-            
-                <p>While speaking at the event, the Chief Minister remarked that the competition aimed to create a joyful learning environment for students and to instill a sense of responsibility toward the school among teachers, parents, students, and alumni. The Maharashtra Government's School Education Department conducted the <em>Chief Minister's My School, Beautiful School</em> campaign across the state from January 1 to February 15. Various committees evaluated schools at five different levels based on predetermined criteria.</p>
-            
-                <p>The competition's purpose was to encourage additional efforts toward quality education through a competitive atmosphere among schools. Dnyanprakash Balvikas Kendra, which has been working in early childhood education for the past 24 years, has made a significant mark. Dnyanprakash is considered a laboratory for early childhood education due to its deliberate efforts toward the holistic development of children right from the start. The institution is recognised both as an educational and social project.</p>
-            
-                <p>For this achievement, the institution received special congratulations from Mr. Ganpatrao More, Deputy Director of Education; Mr. Sudhakar Telang, Chairman of the Latur Board; Mrs. Vandana Futane, Primary Education Officer; Mr. Nagesh Mapari, Secondary Education Officer; and other officials from the Education Department.</p>
-            
-                <p>The award was accepted by the project leader, Satish Narhare, and Principal Savita Narhare. On this occasion, the Deputy Director of Latur Division, Ganpat More; Group Education Officer Sanjay Panchgalle; Supervisor Ashok Gurdale; School Committee members Vishal Malegaonkar and Prabhakar Hipparge; and teacher representatives Vasant Patil, Prashant Shinde, Kalpana Yenge, Madhavi Mirajkar, Uttara Diwan, Sampada Pande, Bhagyashree Swami, Vishwajit Panchal, Pradip Shinde, and Prakash Timke were present.</p>
+            <p class="lede">The rhythms beyond the classroom that shape every Dnyanprakash student &mdash; from music and sports to social work, festivals, and creative projects.</p>
+
+            <p class="article-notice">This article is currently available in Marathi only. An English version is forthcoming.</p>
+
+            <div lang="mr">
+              <h2>संगीत</h2>
+              <p>बालभवनपासूनच ज्ञानप्रकाशच्या चारही विभागाची प्रार्थना सभा संगीतावर आधारित असते. पहिली व दुसरीची मुले आखिल भारतीय गांधर्व मंडळाच्या संगीताच्या (गायन) दोन परीक्षांची तयारी प्रार्थना सभेतच करतात. गायन, वादन यातील आपल्या आवडीनुसार नंतर ज्ञानप्रकाश संगीत विद्यालयात पुढील परीक्षांची तयारी करतात. प्रकल्पातून मिळालेल्या प्रोत्साहनाने जिल्हास्तरीय, राज्यस्तरीय स्पर्धांमधून मुले सहभाग घेत आहेत.</p>
+              <p>म्हणूनच संगीत हा ज्ञानप्रकाशचा आत्मा आहे तर प्रयोगशीलता हा श्वास आहे असे मानले जाते.</p>
+
+              <h2>क्रीडा</h2>
+              <p>बालगटापासून चौथीपर्यंतची मुले वर्गातील बैठे खेळ तसेच वर्गाबाहेरील प्रांगणातही विविध खेळांचा आनंद घेतात. शाळेच्या मोठ्या मैदानावर जानेवारीत क्रीडा महोत्सव होतो. वर्गातील प्रत्येक मूल यात सहभागी असते.</p>
+              <p>योगासन, मल्लखांब, कबड्डी, खो-खो या भारतीय खेळांचे प्रशिक्षण प्रकल्पात दिले जाते. वैयक्तिक व सांघिक अनेक कौशल्यात्मक खेळातून मुले जिल्हास्तरीय, राज्यस्तरीय क्रीडा स्पर्धांतून सहभागी होऊन बक्षीसेही मिळवत आहेत.</p>
+
+              <h2>वाचन संस्कार</h2>
+              <p>मुलांमध्ये वाचनाची आवड निर्माण व्हावी यासाठी बालगटापासूनच सर्वच विभागात वयोगटांनुसार पुस्तके उपलब्ध आहेत. प्रार्थना सभेतून आणि वर्गातून ताई करत असलेल्या प्रकट वाचनामुळेही मुले पुस्तक घरातील पुस्तकांकडे आकर्षित होतात.</p>
+              <p>मोठी मुले ग्रंथालयातून पुस्तके घरी नेऊन वाचन करतात. वाचलेल्या पुस्तकाबद्दल वर्गातून किंवा प्रार्थना सभेतून त्यावर आपली मते मांडतात.</p>
+              <p>ज्ञानप्रकाशचे पालक आपल्या मुलांच्या तसेच आजी आजोबांच्या वाढदिवसानिमित्त ग्रंथालयास पुस्तकांची भेट देतात. त्यातूनही ग्रंथालय अधिक समृद्ध होत आहे.</p>
+
+              <h2>पालक सहभाग</h2>
+              <p>मुलांच्या विकासात पालक आणि शाळा यांची भूमिका महत्त्वपूर्ण असते. त्यामुळे ज्ञानप्रकाश मध्ये पालक हा महत्त्वाचा घटक मानला जातो.</p>
+              <p>प्रत्येक पालक मीटिंग ला (आई-बाबा) दोघांनीही उपस्थित राहून प्रकल्पाची भूमिका व वर्षभरातील नियोजन समजून घेणे महत्त्वाचे असते.</p>
+              <p>बदलत्या काळातील पालकत्वाचा प्रवास सुकर व्हावा यासाठी विविध कार्यशाळा, व्याख्याने, प्रबोधनात्मक कार्यक्रम आणि पालकांसाठीच्या स्पर्धांचे नियोजन संस्था करते. यात पालकांचा आणि पालक समिती सदस्यांचा सक्रिय सहभाग असतो.</p>
+
+              <h2>आनंदनगरी</h2>
+              <p>मुलांना पैशांचे व्यवहार समजावेत. यासाठी इयत्ता ४थी व ५वी ची मुले आनंद नगरीचे आयोजन करतात. यात खरेदी-विक्री, नफा-तोटा यासारख्या गणितीय संकल्पनांचा प्रत्यक्ष कृतीतून अनुभव घेता यावा यासाठी हा उपक्रम महत्त्वाचा ठरतो. पालकांच्या मदतीने विविध चविष्ट पदार्थांचे स्टॉल मांडून मुले विक्री करतात. विविध पदार्थांचा आस्वाद घेण्यासाठी पालक सहकुटुंब येतात. लहान मुले आनंदनगरीतून तर मोठी मुले प्रकल्पात तयार झालेला गांडूळ खत, स्वतः तयार केलेली रोपे व आकर्षक वस्तू, पुस्तक प्रदर्शनातील पुस्तके यांची विक्री करतात. मिळालेल्या नफ्यातून मुलांनी प्रकल्पास उपयोगी अशा अनेक भेट वस्तू दिल्या आहेत.</p>
+
+              <h2>सहल</h2>
+              <p>परिसरातील तसेच जिल्ह्यातील ऐतिहासिक, धार्मिक, नैसर्गिक व औद्योगिक स्थळांची माहिती व्हावी या हेतूने वयोगटानुसार सहलींचे आयोजन केले जाते. यात विविध प्रकारच्या वाहनातून मुले प्रवासाचा आनंद लुटतात.</p>
+              <p>१ली ते ४थी वर्गांची सहल दिवसभराची असते. सर्वच मुलांचा सहभाग असावा यासाठी बालगटापासून चौथीपर्यंतच्या मुलांसाठी कोणतेही शुल्क आकारले जात नाही. मोठ्या मुलांची सहल ३-४ दिवसांची असते. यातही सर्वांना सहभाग घेता यावा यासाठी ती अधिक खर्चिक होऊ नये असाच प्रयत्न असतो. ३ ते ४ दिवसांच्या सहलीत मुले विविध ऐतिहासिक व सामाजिक प्रकल्पांना भेटी देतात. ९वी १०वी ची मुले जंगल सफारी, ट्रेकिंग करतात. यात पाय वाटेने डोंगर चढणे, अंधाऱ्या रात्री पायी प्रवास करणे. यातून विद्यार्थ्यांमध्ये साहस व इतिहास घडविणाऱ्यांबद्दल अभिमान व आदरभाव निर्माण होतो. काही वेळा मुलांच्या सहलीत पालकांचाही सहभाग घेतला जातो.</p>
+
+              <h2>सामाजिक उपक्रम</h2>
+              <p>शाळेच्या परिसराशी आणि पर्यायाने समाजाशी मुले जोडली जावीत या हेतूने अनेक सामाजिक उपक्रमांचे नियोजन केले जाते. यात मतदान जनजागृती, कचरा व जलव्यवस्थापन, कॅरीबॅग निर्मूलन, जलपुनर्भरण, ज्येष्ठांशी संवाद याबरोबर सेवाभावी संस्थांसाठी निधी संकलनही केले जाते. यामुळे संवेदनशीलता आणि समाजभान निर्माण होण्यास मदत होत.</p>
+
+              <h2>सृजनानंद महोत्सव</h2>
+              <p>मुलांच्या कल्पनाशक्तीला, सृजनशीलतेला कृतीशीलतेची जोड मिळावी. यासाठी मागील 26 वर्षांपासून सृजनानंद महोत्सवाचे आयोजन केले जाते. यासाठी वयोगटानुसार प्रकल्प विषय सुचविले जातात. लहान मुले पालकांच्या मदतीने तर मोठी मुले स्वतः यावर काम करतात. मुलांनी अनेक समाज उपयोगी, पर्यावरण पूरक, कौशल्याधारित अनेक विषयांची अभ्यासपूर्ण मांडणी मुलांनी केली आहे.</p>
+
+              <h2>सण-उत्सव</h2>
+              <p>आपल्या देशाची कृषीप्रधानता लक्षात यावी, सांस्कृतिक वारसा जपला जावा तसेच मुलांच्या अंतरिक विचारांना योग्य दिशा मिळून वैज्ञानिक दृष्टिकोन तयार व्हावा हा सण-उत्सव साजरे करण्यामागील मुख्य उद्देश असतो.</p>
+              <p>आपल्या लोकसंस्कृतीची ओळख करून देणारे काही सण-उत्सव प्रकल्पात साजरे होतात.</p>
+              <p>गणेशोत्सव कालावधीतच चराचरातील सर्वांप्रती कृतज्ञता व्यक्त करून सर्व मुले एकत्रित भोजनाचा आनंद घेतात. या संपूर्ण कार्यक्रमाचे नियोजन इयत्ता १० वी ची मुले करतात.</p>
+
+              <h2>इतर स्पर्धा</h2>
+              <p>मुलांचा आत्मविश्वास वाढावा, नवनवीन कौशल्ये विकसित व्हावीत, स्पर्धात्मक वृत्ती विकसित व्हावी यासाठी वर्गा वर्गातून विविध स्पर्धा घेतल्या जातात.</p>
+              <p>यातून सहकार्य वृत्ती, टीमवर्क आणि वेळेचे व्यवस्थापन शिकण्यास मदत होते.</p>
+              <p>यातूनच पुढे जिल्हास्तरीय व राज्यस्तरीय नृत्य, गीत गायन, बालनाट्य, वक्तृत्व, वादविवाद, विज्ञान प्रदर्शन अशा विविध स्पर्धांमधून मुले बक्षीसे मिळवत आहेत.</p>
+
+              <h2>स्नेहसंमेलन</h2>
+              <p>प्रकल्पातील प्रत्येक मूल स्नेहसंमेलनात सहभागी असते. मुलांच्या वयोगटाचा विचार करून जाणीवपूर्वक वैविध्यपूर्ण विषय निवडले जातात. विविध गाणी निवडणे, नाट्यसंवाद लिहिणे, सूत्रसंचालन लिहिणे व करणे अशा अनेक गोष्टी मुले शिक्षकांच्या मार्गदर्शनाखाली करतात. स्नेहसंमेलनातील मुलांचा सहभाग पालकांसाठी अधिक खर्चिक होऊ नये याचाही संस्था विचार करते. स्नेहसंमेलनातून मुलांचे सामूहिक सादरीकरण होते. तर विविध गुणदर्शनातून वैयक्तिक सादरीकरणाची संधी असते. यात कथाकथन, नाट्यछटा, नकला, नृत्य, काव्यवाचन, गीत गायन, वादन, अशा कला प्रकाराची निवड करून सादरीकरण करता येते.</p>
+            </div>
           </div>
 
           <aside class="article-aside" aria-label="Related information">
-            <blockquote class="aside-pullquote">
-              &ldquo;Honoured by the Chief Minister with a trophy and a ₹15-lakh cash prize at a state ceremony in Mumbai.&rdquo;
-              <cite>From the article</cite>
+            <blockquote class="aside-pullquote" lang="mr">
+              &ldquo;संगीत हा ज्ञानप्रकाशचा आत्मा आहे तर प्रयोगशीलता हा श्वास आहे.&rdquo;
+              <cite lang="mr">लेखातून</cite>
             </blockquote>
             <div class="aside-card">
               <div class="aside-card-eyebrow">Related pages</div>
               <div class="aside-links">
                 <a href="../about/mission.html">Our Mission</a>
                 <a href="../about/history.html">Our History</a>
-                <a href="../academics/index.html">Academics Overview</a>
+                <a href="index.html">Academics Overview</a>
 
                 <a href="../admission/index.html">Admissions</a>
               </div>
@@ -1741,36 +1768,6 @@
             </div>
           </aside>
         </div>
-      </div>
-    </section>
-    <section class="section-pad reveal" style="background: var(--color-bg-alt);">
-      <div class="container-main">
-        <div class="section-eyebrow">More from News</div>
-        <h2 class="section-title" style="font-size:32px;">Related Stories</h2>
-        <div class="news-grid">
-          
-          <article class="news-card">
-            <div class="news-img-wrap"><div data-img-slot="3" data-img-description="News — Felicitation of 142 Meritorious Students in Various Competitive Exams" class="slot-box w-full h-full"><div class="text-center"><div class="slot-num">3</div><div class="slot-desc">News — Felicitation of 142 Meritorious S</div></div></div></div>
-            <div class="news-cat">News · June 3, 2025</div>
-            <h3 class="news-headline"><a href="142-meritorious-students.html">Felicitation of 142 Meritorious Students in Various Competitive Exams</a></h3>
-            <a href="142-meritorious-students.html" class="news-read">Read Story <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-          </article>
-
-          <article class="news-card">
-            <div class="news-img-wrap"><div data-img-slot="4" data-img-description="News — Parents Grasp the Concepts of the New First Grade Textbook" class="slot-box w-full h-full"><div class="text-center"><div class="slot-num">4</div><div class="slot-desc">News — Parents Grasp the Concepts of the</div></div></div></div>
-            <div class="news-cat">News · June 18, 2025</div>
-            <h3 class="news-headline"><a href="parents-grade-one-textbook.html">Parents Grasp the Concepts of the New First Grade Textbook!</a></h3>
-            <a href="parents-grade-one-textbook.html" class="news-read">Read Story <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-          </article>
-
-          <article class="news-card">
-            <div class="news-img-wrap"><div data-img-slot="34" data-img-description="News — A Conversation with Institute Head Mr. Satish Narhare" class="slot-box w-full h-full"><div class="text-center"><div class="slot-num">34</div><div class="slot-desc">News — A Conversation with Institute Hea</div></div></div></div>
-            <div class="news-cat">News · May 12, 2025</div>
-            <h3 class="news-headline"><a href="institute-head-satish-narhare.html">A Conversation with Institute Head Mr. Satish Narhare</a></h3>
-            <a href="institute-head-satish-narhare.html" class="news-read">Read Story <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-          </article>
-        </div>
-        <div style="margin-top:32px;"><a href="index.html" class="news-read">All News <i data-lucide="arrow-right" class="w-4 h-4"></i></a></div>
       </div>
     </section>
   </main>
@@ -1804,9 +1801,9 @@
           <nav class="footer-links">
             <a href="../admission/index.html">Admission</a>
             <a href="../about/index.html">About</a>
-            <a href="../academics/index.html">Academics</a>
+            <a href="../index.html">Academics</a>
 
-            <a href="../index.html">News</a>
+            <a href="../news/index.html">News</a>
             <a href="../give.html">Give</a>
             <a href="../contact.html">Contact</a>
           </nav>
@@ -1870,10 +1867,10 @@
       <nav class="grow">
         <details class="mobile-accordion"><summary>About</summary><div class="mobile-sublinks"><a href="../about/about-education.html">About Education</a><a href="../about/principals-note.html">Principal's Note</a><a href="../about/history.html">Our History</a><a href="../about/mission.html">Mission &amp; Values</a><a href="../about/at-a-glance.html">At a Glance</a><a href="../gallery.html">Photo Gallery</a><a href="../contact.html">Contact Us</a></div></details>
         <details class="mobile-accordion"><summary>Admission</summary><div class="mobile-sublinks"><a href="../admission/index.html">Admission Process</a><a href="https://www.dnyanprakash.techvium.in/online_admission" target="_blank" rel="noopener">Apply Online</a><a href="../admission/why-dnyanprakash.html">Why Dnyanprakash</a><a href="../admission/faq.html">FAQs</a><a href="../contact.html">Visit Campus</a></div></details>
-        <details class="mobile-accordion"><summary>Academics</summary><div class="mobile-sublinks"><a href="../academics/index.html">Overview</a><a style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Balbhavan (Age 3–6)</a><a style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Balvikas Kendra (1–4)</a><a style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Vidyaniketan (5–10)</a><a style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Narhare Learning Home</a><a href="../academics/student-life.html">Student Life</a></div></details>
+        <details class="mobile-accordion"><summary>Academics</summary><div class="mobile-sublinks"><a href="../index.html">Overview</a><a href="balbhavan.html">Balbhavan (Age 3–6)</a><a href="balvikas-kendra.html">Balvikas Kendra (1–4)</a><a href="vidyaniketan.html">Vidyaniketan (5–10)</a><a href="narhare-learning-home.html">Narhare Learning Home</a><a href="../academics/student-life.html">Student Life</a></div></details>
 
         <details class="mobile-accordion"><summary>Alumni</summary><div class="mobile-sublinks"><a style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Alumni Home</a><a href="../alumni/stories.html">Alumni Stories</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeA1j8Xxg0xGYDTq9ZWdDddxrIpbencHvAvya4KUw4CQTNePQ/viewform" target="_blank" rel="noopener noreferrer">Stay Connected</a><a style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Give Back</a><a style="color: rgba(0, 0, 0, 0.35); cursor: not-allowed; pointer-events: none;">Photo Archive</a></div></details>
-        <details class="mobile-accordion"><summary>News</summary><div class="mobile-sublinks"><a href="../index.html">Latest News</a><a href="../campus-life/events.html">Events</a><a href="../gallery.html">Media Gallery</a></div></details>
+        <details class="mobile-accordion"><summary>News</summary><div class="mobile-sublinks"><a href="../news/index.html">Latest News</a><a href="../news/challenging-times-leaders.html">Challenging Times</a><a href="../news/institute-head-satish-narhare.html">Institute Head, Mr. Narhare</a><a href="../campus-life/events.html">Events</a><a href="../gallery.html">Media Gallery</a></div></details>
         <details class="mobile-accordion"><summary>Login</summary><div class="mobile-sublinks"><a href="http://dnyanprakash.techvium.in/site/userlogin" target="_blank" rel="noopener">Student Login</a><a href="http://dnyanprakash.techvium.in/site/userlogin" target="_blank" rel="noopener">Faculty Login</a><a href="http://dnyanprakash.techvium.in/site/userlogin" target="_blank" rel="noopener">Alumni Login</a></div></details>
       </nav>
       <div class="flex flex-col gap-3 p-5 border-t border-[var(--color-border)] shrink-0">
