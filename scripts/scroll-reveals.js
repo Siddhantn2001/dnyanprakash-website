@@ -1,22 +1,120 @@
 /**
- * Scroll-triggered reveals — extras layered on top of the inline reveal IIFE
- * that already exists in every HTML file.
+ * Scroll-triggered reveals — position-aware horizontal slide-in.
  *
- * The inline IIFE handles Pattern 1 (section fade-up): finds .reveal elements,
- * adds .reveal-fx to off-screen ones, observes them, adds .is-visible when
- * they enter the viewport.
+ * 2026-04-30 rewrite: replaces the legacy translateY fade-up with
+ * directional translate3d slide-ins where each element's horizontal
+ * position vs viewport center decides which side it enters from.
+ * Elements on the left half slide in from the left; elements on the
+ * right slide in from the right; elements within ±10% of center fall
+ * back to alternating. Mobile (single-column stacked layout) lands
+ * most elements near center, so the alternating fallback dominates.
  *
- * Pattern 2 (staggered tile reveals) is pure CSS — see :nth-child rules under
- * .scroll-stagger > .reveal.reveal-fx in the HTML's <style> block.
+ * Architecture: the inline IIFE in every HTML file still runs and
+ * adds .reveal-fx to off-screen .reveal elements. Harmless because
+ * mobile-polish.css uses .reveal.reveal-fx.reveal-left (0,3,0) to
+ * override the inline .reveal.reveal-fx (0,2,0) translateY rule.
+ * Both observers add .is-visible; whichever fires first wins.
  *
- * This file adds Pattern 3 — stat number count-up animation. Targets
- * elements with class="stat-counter" and a numeric data-target. When the
- * element enters the viewport once, the inner text content animates from
- * 0 to the target using easeOutQuart, then stops.
- *
- * Respects prefers-reduced-motion: shows the final value immediately
- * without animating.
+ * Pattern 3 (stat number count-up) is preserved at the bottom.
  */
+
+/* ===== Pattern 4 — Position-aware horizontal reveals ===== */
+window.addEventListener('load', function () {
+  if (!('IntersectionObserver' in window)) return;
+
+  var reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+
+  var prefersReduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reduced motion: mark everything visible immediately, skip observer.
+  if (prefersReduced) {
+    for (var p = 0; p < reveals.length; p++) {
+      reveals[p].classList.add('is-visible');
+    }
+    return;
+  }
+
+  // (a) Position-aware direction assignment.
+  // Element's horizontal center vs viewport center decides direction.
+  // Within ±10% of center → fall back to alternating index.
+  function assignDirections() {
+    var vw = window.innerWidth;
+    var vc = vw / 2;
+    var band = vw * 0.10;
+    var fallback = 0;
+    for (var i = 0; i < reveals.length; i++) {
+      var el = reveals[i];
+      // Skip already-revealed elements during resize recompute
+      if (el.classList.contains('is-visible')) continue;
+      el.classList.remove('reveal-left', 'reveal-right');
+      var rect = el.getBoundingClientRect();
+      var elCenter = rect.left + rect.width / 2;
+      var offset = elCenter - vc;
+      if (offset < -band) {
+        el.classList.add('reveal-left');
+      } else if (offset > band) {
+        el.classList.add('reveal-right');
+      } else {
+        el.classList.add(fallback % 2 === 0 ? 'reveal-left' : 'reveal-right');
+        fallback++;
+      }
+    }
+  }
+
+  assignDirections();
+
+  // (b) Parent-grouped stagger: when a parent has multiple .reveal
+  //     children (news cards, explore tiles), each child fires 120ms
+  //     after the previous via --reveal-delay CSS variable.
+  var parentMap = new Map();
+  for (var k = 0; k < reveals.length; k++) {
+    var parent = reveals[k].parentElement;
+    if (!parentMap.has(parent)) parentMap.set(parent, []);
+    parentMap.get(parent).push(reveals[k]);
+  }
+  parentMap.forEach(function (group) {
+    if (group.length > 1) {
+      for (var n = 0; n < group.length; n++) {
+        group[n].style.setProperty('--reveal-delay', (n * 120) + 'ms');
+      }
+    }
+  });
+
+  // (c) IntersectionObserver with anticipatory trigger.
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        // 1100ms = 900ms (max transform duration) + buffer for stagger.
+        // After this, .reveal-done sets will-change: auto in CSS so the
+        // GPU layer is released.
+        setTimeout(function (target) {
+          return function () { target.classList.add('reveal-done'); };
+        }(entry.target), 1100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.05,
+    rootMargin: '0px 0px -8% 0px'
+  });
+
+  for (var m = 0; m < reveals.length; m++) {
+    observer.observe(reveals[m]);
+  }
+
+  // (d) Recompute directions on resize for elements not yet revealed.
+  //     Debounced so we don't thrash on every pixel of a resize drag.
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(assignDirections, 200);
+  });
+});
+
+/* ===== Pattern 3 — Stat number count-up ===== */
 (function () {
   'use strict';
 
