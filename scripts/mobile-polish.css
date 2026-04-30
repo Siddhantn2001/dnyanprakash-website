@@ -1,0 +1,180 @@
+/*
+ * Mobile polish layer — R/GA polish pass, 2026-04-29
+ *
+ * Loaded on every page via <link rel="stylesheet" href="…/scripts/mobile-polish.css">.
+ * Every rule is mobile-only (@media max-width: 768px) so desktop is untouched.
+ *
+ * Contains:
+ *   1. Sticky nav with scrolled-state (backdrop-filter + fallback)
+ *   2. Drawer item stagger animation (40ms apart)
+ *   3. Scroll progress bar — 2px brand-red signature line
+ *   4. Reduced reveal motion — 24px / 500ms (was 40px / 800ms)
+ *   5. View transitions — 250ms cross-fade between pages
+ *
+ * Hard rule: every selector lives inside @media (max-width: 768px) OR
+ * is a top-level @view-transition / ::view-transition rule. Reduced-motion
+ * is respected throughout.
+ */
+
+/* ========================================================================
+   View transitions — cross-page fade. Top-level so it applies on all widths.
+   navigation: auto → browser fades old view out and new view in on
+   same-origin nav. Browsers without support no-op.
+   ======================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 250ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* ========================================================================
+   Scroll progress signature — 2px brand-red bar at top, fills L→R.
+   Width is driven by --scroll-progress (set by mobile-polish.js).
+   Hidden on desktop; visible on mobile only.
+   ======================================================================== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: var(--scroll-progress, 0%);
+  background: var(--color-primary, #9E1B32);
+  z-index: 50;
+  pointer-events: none;
+  transition: width 0.08s linear;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .scroll-progress {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    transition: none;
+  }
+}
+
+/* ========================================================================
+   Mobile-only polish — every rule below is inside the mobile breakpoint.
+   ======================================================================== */
+@media (max-width: 768px) {
+  /* ----- Sticky nav (Move 3) -----
+     Switch from absolute (overlay) to sticky on mobile. Hero compensates
+     via negative margin so it bleeds up under the sticky transparent nav.
+     z-index ensures it sits above hero photo, below mobile drawer (z:60).
+  */
+  .site-header {
+    position: sticky !important;
+    top: 0;
+    z-index: 30;
+    transition: background 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Homepage hero bleeds under the now-in-flow sticky header.
+     36px utility bar + ~80px main nav ≈ 116px to compensate.
+     The .hero class only exists on the homepage (other pages use
+     .page-hero / .article-hero), so this won't affect inner pages. */
+  .hero {
+    margin-top: -116px;
+  }
+
+  /* Scrolled state — solid backdrop + dark text once user has scrolled
+     past 60px. Triggered by mobile-polish.js adding .is-scrolled. */
+  .site-header.is-scrolled .main-nav,
+  .site-header.is-scrolled [data-section="utility-bar"] {
+    background: rgba(255, 255, 255, 0.92) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid rgba(191, 194, 197, 0.5) !important;
+  }
+
+  /* Fallback for browsers without backdrop-filter — solid white */
+  @supports not ((backdrop-filter: blur(14px)) or (-webkit-backdrop-filter: blur(14px))) {
+    .site-header.is-scrolled .main-nav,
+    .site-header.is-scrolled [data-section="utility-bar"] {
+      background: rgba(255, 255, 255, 0.97) !important;
+    }
+  }
+
+  /* Scrolled-state text colours (overlay-mode header had white text) */
+  .site-header:not(.nav-solid).is-scrolled .nav-link,
+  .site-header:not(.nav-solid).is-scrolled [data-mobile-open] {
+    color: var(--color-text-primary, #2b2724) !important;
+    text-shadow: none !important;
+  }
+  .site-header:not(.nav-solid).is-scrolled [data-section="utility-bar"] a,
+  .site-header:not(.nav-solid).is-scrolled [data-section="utility-bar"] button,
+  .site-header:not(.nav-solid).is-scrolled [data-section="utility-bar"] span {
+    color: var(--color-text-muted, #818386) !important;
+  }
+
+  /* nav-solid pages already have light text — scrolled state just adds
+     the subtle backdrop-blur for depth. */
+
+  /* ----- Drawer item stagger (Move 3) -----
+     Drawer panel slides in from the right (existing behaviour).
+     Inside the panel, accordion items fade + slide 40ms apart so the
+     menu reads as "assembled" not "appeared". */
+  .mobile-drawer .mobile-accordion {
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mobile-drawer.is-open .mobile-accordion {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  /* Stagger: panel takes ~220ms to slide in, items begin assembling at 140ms */
+  .mobile-drawer.is-open .mobile-accordion:nth-child(1) { transition-delay: 140ms; }
+  .mobile-drawer.is-open .mobile-accordion:nth-child(2) { transition-delay: 180ms; }
+  .mobile-drawer.is-open .mobile-accordion:nth-child(3) { transition-delay: 220ms; }
+  .mobile-drawer.is-open .mobile-accordion:nth-child(4) { transition-delay: 260ms; }
+  .mobile-drawer.is-open .mobile-accordion:nth-child(5) { transition-delay: 300ms; }
+  .mobile-drawer.is-open .mobile-accordion:nth-child(6) { transition-delay: 340ms; }
+  .mobile-drawer.is-open .mobile-accordion:nth-child(7) { transition-delay: 380ms; }
+  .mobile-drawer.is-open .mobile-accordion:nth-child(8) { transition-delay: 420ms; }
+
+  /* Drawer backdrop — add a subtle blur (was flat 50% black) */
+  .mobile-backdrop {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+
+  /* ----- Reveal motion (refined) -----
+     Diagnostic: 40px translateY at 800ms reads as "loading slot".
+     Tightened to 24px / 500ms for editorial fade feel. */
+  .reveal.reveal-fx {
+    transform: translateY(24px) !important;
+    transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  }
+
+  /* Reduced motion — disable stagger + transitions */
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-drawer .mobile-accordion,
+    .mobile-drawer.is-open .mobile-accordion {
+      transition: none !important;
+      transition-delay: 0ms !important;
+      opacity: 1;
+      transform: none;
+    }
+    .site-header {
+      transition: none !important;
+    }
+  }
+}

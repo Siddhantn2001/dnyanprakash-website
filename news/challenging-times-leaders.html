@@ -1356,8 +1356,11 @@
     }
     .aside-instagram-btn:hover { background: var(--color-primary-dark); color: #fff; text-decoration: none; }
   </style>
+  <!-- Mobile polish layer (R/GA pass 2026-04-29) -->
+  <link rel="stylesheet" href="../scripts/mobile-polish.css" />
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <!-- NAV/FOOTER — if changing, update in all pages (see CLAUDE.md §8.14 override) -->
   <header class="site-header nav-solid">
   <!-- =========================================================
@@ -1930,5 +1933,6 @@
   <script defer src="../scripts/translations-manifest.js"></script>
   <script defer src="../scripts/lang-toggle.js"></script>
   <script defer src="../scripts/scroll-reveals.js"></script>
+  <script defer src="../scripts/mobile-polish.js"></script>
 </body>
 </html>

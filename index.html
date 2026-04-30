@@ -28,6 +28,9 @@
   <!-- Lucide icons for social/utility icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
+  <!-- Mobile polish layer — sticky nav, view transitions, scroll progress, drawer stagger -->
+  <link rel="stylesheet" href="scripts/mobile-polish.css" />
+
   <!-- =========================================================
        LOCKED DESIGN TOKENS — extracted from Taft's live CSS
        (see screenshots/reference/taft-main.css for provenance)
@@ -1332,9 +1335,131 @@
     main > section.section-pad.article-body:has(> .container-main > .article-heading + .lede) + section.section-pad {
       padding-top: 0;
     }
+
+    /* =========================================================
+       R/GA Mobile Polish Pass (2026-04-29) — homepage-only mobile rules.
+       Sticky-nav + view-transitions + drawer-stagger + scroll-progress
+       live in scripts/mobile-polish.css (shared across every page).
+       The rules below are homepage-specific: hero refinement (Move 1)
+       and section-padding rhythm tiers (Move 2). Mobile only.
+       ========================================================= */
+    @media (max-width: 768px) {
+      /* ----- MOVE 1: Hero refinement -----
+         88vh hero (was 100vh) — invites scroll, accounts for iOS chrome.
+         Tighter type, lighter text-shadow, refined gradient curve. */
+      .hero {
+        height: 88vh;
+        min-height: 600px;
+        max-height: none;
+      }
+      /* Gradient — transparent at top, gentle wash starting at 30%, stable
+         floor of 0.55 from 80% down (was hard 0.6 floor only at 100%). */
+      .hero-overlay {
+        background: linear-gradient(180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 30%,
+          rgba(0, 0, 0, 0.35) 60%,
+          rgba(0, 0, 0, 0.55) 80%,
+          rgba(0, 0, 0, 0.55) 100%);
+      }
+      /* Headline — 400 weight stays (locked design language), but tighter
+         tracking + line-height and a softer shadow for crisper serifs. */
+      .hero-title {
+        letter-spacing: -0.025em;
+        line-height: 1.02;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+      }
+      .hero-sub {
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+        opacity: 0.92;
+      }
+
+      /* CTA hierarchy — primary full-width, secondary as quiet text-link.
+         Targets only the hero CTA group. Override the existing flex-wrap
+         row to a stack with the secondary cued as a link. */
+      .hero-content .flex.flex-wrap {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+      }
+      .hero-content .btn-hero-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 18px 24px;
+        font-size: 14px;
+      }
+      /* Recast the secondary outlined button as a quiet text-link with arrow */
+      .hero-content .btn-hero-secondary {
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        align-self: center;
+        text-transform: none;
+        letter-spacing: 0;
+        font-family: var(--font-display);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.94) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 0;
+        height: auto;
+        line-height: 1.4;
+        padding-bottom: 4px !important;
+      }
+      .hero-content .btn-hero-secondary::after {
+        content: ' →';
+        font-style: normal;
+        font-family: var(--font-sans);
+        margin-left: 4px;
+        transition: transform 0.25s var(--ease-out-expo);
+        display: inline-block;
+      }
+      .hero-content .btn-hero-secondary:hover,
+      .hero-content .btn-hero-secondary:active {
+        background: transparent !important;
+        color: #fff !important;
+        border-bottom-color: #fff;
+      }
+      .hero-content .btn-hero-secondary:active::after {
+        transform: translateX(3px);
+      }
+      /* :active feedback for the primary CTA — the touch moment */
+      .hero-content .btn-hero-primary:active {
+        transform: scale(0.985);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      }
+
+      /* Hide the hero social rail on mobile — footer carries the same
+         icons in a more honest position (verified 2026-04-29). */
+      .hero-social-rail {
+        display: none !important;
+      }
+
+      /* ----- MOVE 2: Section padding rhythm tiers -----
+         Diagnostic showed every section using identical 60px padding —
+         no contrast, no rhythm. Three tiers, mobile only:
+           .pad-image  → 44px / 44px (image-led, dense)
+           default     → 60px (text teasers, neutral)
+           .pad-quiet  → 96px / 96px (editorial, big breath)
+         Applied via additional class on existing sections — no DOM changes. */
+      .section-pad.pad-image {
+        padding-top: 44px;
+        padding-bottom: 44px;
+      }
+      .section-pad.pad-quiet {
+        padding-top: 96px;
+        padding-bottom: 96px;
+      }
+    }
+    /* End R/GA Mobile Polish Pass */
   </style>
 </head>
 <body>
+  <!-- Scroll progress signature (Move 4) — 2px brand-red bar that fills
+       L→R as the visitor scrolls. Mobile-only via mobile-polish.css. -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
   <!-- =========================================================
        Site header — wraps utility bar + main nav so they can share
        overlay vs solid states. Overlay (default) on pages with a hero;
@@ -1622,7 +1747,7 @@
     <!-- =========================================================
          Section 8.4 — Featured News (3-column grid, all cards visible)
          ========================================================= -->
-    <section class="section-pad reveal" aria-label="Featured News">
+    <section class="section-pad pad-image reveal" aria-label="Featured News">
       <div class="container-main">
         <div class="section-eyebrow">In This Section</div>
         <div class="flex items-end justify-between flex-wrap gap-4 mb-8">
@@ -1713,7 +1838,7 @@
     <!-- =========================================================
          Section 8.6 — Video Spotlight
          ========================================================= -->
-    <section class="section-pad reveal" aria-label="Video Spotlight">
+    <section class="section-pad pad-image reveal" aria-label="Video Spotlight">
       <div class="container-main">
         <div class="section-eyebrow">Watch</div>
         <h2 class="section-title">A Virtual Tour of Dnyanprakash</h2>
@@ -1755,7 +1880,7 @@
     <!-- =========================================================
          Section 8.8 — Explore Dnyanprakash
          ========================================================= -->
-    <section class="section-pad reveal" aria-label="Explore Dnyanprakash">
+    <section class="section-pad pad-image reveal" aria-label="Explore Dnyanprakash">
       <div class="container-main">
         <div class="section-eyebrow">Learn With Us</div>
         <h2 class="section-title">Explore Dnyanprakash</h2>
@@ -1898,7 +2023,7 @@
          Sections 8.9 + 8.10 combined — Taft-style:
          Mission text LEFT, "Dnyanprakash at a Glance" stats circle RIGHT.
          ========================================================= -->
-    <section class="section-pad reveal mission-stats" aria-label="Our Mission and at a Glance">
+    <section class="section-pad pad-quiet reveal mission-stats" aria-label="Our Mission and at a Glance">
       <div class="container-main">
         <div class="mission-stats-grid">
           <!-- LEFT: Mission -->
@@ -2183,5 +2308,6 @@
   <script defer src="scripts/translations-manifest.js"></script>
   <script defer src="scripts/lang-toggle.js"></script>
   <script defer src="scripts/scroll-reveals.js"></script>
+  <script defer src="scripts/mobile-polish.js"></script>
 </body>
 </html>

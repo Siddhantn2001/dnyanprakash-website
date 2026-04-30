@@ -750,4 +750,47 @@ When in doubt, look at the existing About / Principal's Note / Admission Process
 
 ---
 
+## Session Notes — April 29, 2026 (R/GA Mobile Polish Pass)
+
+A 5-move polish pass landed in one commit. Everything is mobile-only (`@media max-width: 768px`) — desktop is untouched. The shared layer is `scripts/mobile-polish.css` + `scripts/mobile-polish.js`, referenced from every one of the 43 HTML files via the dev-only injector at `scripts/inject-mobile-polish.js` (idempotent — safe to re-run after creating new pages).
+
+**What shipped:**
+
+1. **Hero refinement (homepage only):** 88vh hero on mobile (was 100vh — invites scroll, accounts for iOS chrome), tighter headline (`letter-spacing: -0.025em`, `line-height: 1.02`), softened text-shadow (`0 2px 12px rgba(0,0,0,0.45)`, was a heavier 28px blur), refined gradient curve (transparent → 0.55 floor at 80%), and a recomposed CTA hierarchy: filled "Admission Process" full-width primary + a quiet "Take a Virtual Tour" italic-serif text-link below it. Hero social rail hidden under 768px (footer carries the same icons more honestly).
+
+2. **Scroll-rhythm tiers (homepage only):** three padding tiers via additional classes on existing sections — `.pad-image` (44px, applied to Featured News / Video Spotlight / Explore Dnyanprakash), default (60px, text teasers), and `.pad-quiet` (96px, applied to Mission + At a Glance for the editorial breath). Mobile-only — desktop padding unchanged at 80px.
+
+3. **Sticky nav with scrolled-state (site-wide):** `.site-header` switched from `position: absolute` to `position: sticky; top: 0` on mobile. The homepage `.hero` has `margin-top: -116px` so it bleeds up under the now-in-flow transparent nav. Once `scrollY > 60`, JS adds `.is-scrolled` to the header and CSS swaps the nav background to `rgba(255,255,255,0.92)` + `backdrop-filter: blur(14px) saturate(1.4)`, with a `@supports not` fallback to `rgba(255,255,255,0.97)` for browsers without backdrop-filter. Text colors flip from white to dark in the same state. Reduced-motion respected (`transition: none`).
+
+4. **View transitions (site-wide):** `@view-transition { navigation: auto }` + 250ms cross-fade between same-origin nav. No-op on browsers without support. Reduced-motion respected.
+
+5. **Drawer item stagger (site-wide):** mobile-drawer accordion items fade + slide 40ms apart (140ms → 420ms range) so the menu reads as "assembled" not "appeared". Drawer backdrop got a subtle `backdrop-filter: blur(2px)`.
+
+6. **Scroll progress signature (site-wide):** 2px brand-red bar at the top of every page, fills L→R as the visitor scrolls. Driven by `--scroll-progress` CSS variable set on `<html>` by `mobile-polish.js`. Hidden on desktop, mobile-only.
+
+7. **Reveal motion refined (site-wide on mobile):** translateY tightened from 40px → 24px, duration 800ms → 500ms — fade reads as editorial transition, not as a content-loading slot.
+
+**Files touched:**
+- New: `scripts/mobile-polish.css`, `scripts/mobile-polish.js`, `scripts/inject-mobile-polish.js`
+- Edited: `index.html` (Move 1 + 2 + Move 4 element + script refs)
+- Edited: 42 other HTML pages (script + style tag injection only, no content changes)
+
+---
+
+## Content debt — next session's brief (from R/GA polish pass Move 5)
+
+The polish pass revealed content gaps that the typography and motion only made more obvious. **Do not fix these in the polish pass session — they require content/structure decisions, not CSS.** Carry into the next session:
+
+1. **Replace `images/01-hero.jpg`.** The current 1280×853 wide shot of the school building exterior with heavy foliage is the weakest visual anchor on the site. After Move 1's hero polish (tightened type, refined gradient, single confident CTA), the photo is the only element that doesn't earn the editorial treatment. Premium school sites lead with EITHER a tight portrait of a student/faculty member OR an architectural detail (a doorway, a covered walk, a stained-glass window). Action: source one or both options, ideally at 2400px wide minimum, and replace.
+
+2. **Collapse the three middle teaser sections into one editorial moment.** "An Experiment in Education" → "A Vision of Joyful Learning" → "Learning through action" all share the same eyebrow + 50/50 split + portrait-image structure. Three of these stacked is the dullest stretch on mobile. Options: (a) collapse to one combined editorial section + a small carousel/grid of related articles, (b) use one as the anchor and demote the other two to one-line cards in a row, (c) cut to two and rework the third's content to be visually different (full-bleed quote, single-image essay, etc.). Owner decision required.
+
+3. **Compress heavy PNG hero photos.** Six pages currently ship 3.3 MB – 7.6 MB hero images: slot 25 (FAQ, 6.6 MB), slot 19 (at-a-glance, 7.6 MB), slot 17 (Narhare Learning Home, 3.3 MB), slot 14 (Vidyaniketan, 5.4 MB), slot 13 (Balvikas Kendra, 6.5 MB), slot 47 (Principal's Note, 3.6 MB). Run through TinyPNG or ImageMagick `-quality 82 -strip` to land each near 500 KB. The polish pass made these load times more conspicuous — page-to-page view transitions reveal slow image swaps clearly.
+
+4. **"Meet Our Community" decision.** §8.5 is in scope per `CLAUDE.md`, the `.meet-row` and `.meet-card` styles exist (`index.html` lines 789–822), but the section is not implemented in the homepage markup. Either build it (with real student/staff names + portraits, not the original 6 dummy slugs) or formally cut it from §8.5 and update the CLAUDE.md scope. Currently it's dead CSS.
+
+**Note for next-session Claude:** The mobile polish pass is locked. If you find yourself wanting to "improve" any of the moves above (hero typography, sticky nav, scroll progress, etc.), STOP — those decisions were owner-approved after a written diagnostic. Touch them only if the owner explicitly requests a change.
+
+---
+
 *This file is the single source of truth for the Dnyanprakash Educational Project website. If you are Claude reading this at the start of a new session — you now know everything you need. Begin.*
