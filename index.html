@@ -1588,6 +1588,10 @@
       align-items: center;
       justify-content: center;
     }
+    /* Suppress transition on wrap so the carousel doesn't fly past the visible range */
+    .coverflow-track.is-wrap-snap .cf-item {
+      transition: none !important;
+    }
     .cf-item {
       position: absolute;
       top: 50%;
@@ -2234,10 +2238,10 @@
                  tabindex="0">
               <div class="coverflow-track" data-track></div>
               <div class="coverflow-dots" data-dots aria-hidden="true"></div>
-              <button type="button" class="coverflow-nav coverflow-nav-prev" data-nav-prev aria-label="Newer issue">
+              <button type="button" class="coverflow-nav coverflow-nav-prev" data-nav-prev aria-label="Older issue">
                 <span aria-hidden="true">←</span>
               </button>
-              <button type="button" class="coverflow-nav coverflow-nav-next" data-nav-next aria-label="Older issue">
+              <button type="button" class="coverflow-nav coverflow-nav-next" data-nav-next aria-label="Newer issue">
                 <span aria-hidden="true">→</span>
               </button>
             </div>

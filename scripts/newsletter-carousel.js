@@ -100,11 +100,24 @@
   });
 
   function setActive(newIndex) {
-    activeIndex = Math.max(0, Math.min(totalIssues - 1, newIndex));
+    // Modulo wrap — handles negative correctly (JS % preserves sign)
+    activeIndex = ((newIndex % totalIssues) + totalIssues) % totalIssues;
     render();
   }
 
   function render() {
+    const prevActiveIndex = parseInt(track.dataset.lastActive || '0', 10);
+    const isWrap = Math.abs(activeIndex - prevActiveIndex) > 1;
+    if (isWrap) {
+      track.classList.add('is-wrap-snap');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          track.classList.remove('is-wrap-snap');
+        });
+      });
+    }
+    track.dataset.lastActive = String(activeIndex);
+
     const items = track.querySelectorAll('.cf-item');
     items.forEach(function (item, i) {
       item.setAttribute('data-delta', String(i - activeIndex));
@@ -128,13 +141,12 @@
       originalTarget.textContent =
         'Download print-quality original (' + issue.originalSizeMb + 'MB) ↓';
     }
-
-    prevBtn.disabled = activeIndex === 0;
-    nextBtn.disabled = activeIndex === totalIssues - 1;
   }
 
-  prevBtn.addEventListener('click', function () { setActive(activeIndex - 1); });
-  nextBtn.addEventListener('click', function () { setActive(activeIndex + 1); });
+  // LEFT arrow → older (higher index, since older issues sit visually to the left)
+  // RIGHT arrow → newer (lower index)
+  prevBtn.addEventListener('click', function () { setActive(activeIndex + 1); });
+  nextBtn.addEventListener('click', function () { setActive(activeIndex - 1); });
 
   root.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') {
