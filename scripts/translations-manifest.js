@@ -22,4 +22,5 @@ window.MR_TRANSLATIONS_AVAILABLE = {
   "alumni/stories.html": true,
   "alumni.html": true,
   "academics/student-life.html": true,
+  "news/editorial.html": true,
 };
